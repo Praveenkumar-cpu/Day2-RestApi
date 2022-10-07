@@ -34,6 +34,10 @@ public class RestControl {
     }
 
 
-
+    //localhost:8085/hello/put/Praveen?lastName=Kumar
+    @PutMapping("/hello/put/{firstName}")
+    public String sayHelloWithPut(@PathVariable String firstName, @RequestParam String lastName){
+        return "Hello " + firstName + " " + lastName + " from Bridgelabz";
+    }
 
 }
