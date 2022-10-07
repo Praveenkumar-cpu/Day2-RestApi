@@ -1,10 +1,11 @@
 package com.bridgelabz.restapi.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class RestControl {
@@ -14,14 +15,25 @@ public class RestControl {
         return "Hello from Bridgelab";
     }
 
+
+    //localhost:8085/query?name=Mark
     @GetMapping("/query")
     public String sayHello(@RequestParam String name) {
         return "Hello "+name+" From BridgeLabz";
     }
 
-    @GetMapping("/param/{name}")
-    public String sayHelloParam(@PathVariable String name) {
-        return "Hello "+name+" From BridgeLabz";
+    // localhost:8085/hello/{Mark}
+    @GetMapping("/hello/{name}")
+    public String hello(@PathVariable String name){
+        return "Hello " +name+ " from Bridgelabz";
     }
+
+    @PostMapping("/hello")
+    public String getFirstLastName(@RequestBody User user){
+        return "Hello "+ user.getFirstName() +" "+ user.getLastName() +" from Bridgelabz";
+    }
+
+
+
 
 }
